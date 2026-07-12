@@ -57,3 +57,25 @@ def show_plans(chat_id):
         "📦 Select your subscription plan:",
         reply_markup=markup
     )
+def show_payment(chat_id, plan):
+    data = PLANS[plan]
+
+    text = f"""
+💎 Premium Subscription
+
+📦 Plan : {data['name']}
+💰 Price : ₹{data['price']}
+
+💳 UPI ID:
+`{UPI_ID}`
+
+✅ Payment karne ke baad payment screenshot yahi bhej dijiye.
+
+Admin verify karne ke baad aapko automatic Premium access mil jayega.
+"""
+
+    bot.send_message(
+        chat_id,
+        text,
+        parse_mode="Markdown"
+    )
