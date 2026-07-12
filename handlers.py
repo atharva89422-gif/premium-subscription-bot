@@ -34,7 +34,6 @@ def show_home(message):
         reply_markup=markup
     )
 
-
 def show_plans(chat_id):
     markup = InlineKeyboardMarkup()
 
@@ -47,8 +46,22 @@ def show_plans(chat_id):
 
     markup.add(
         InlineKeyboardButton(
+            f"💎 15 Days - ₹{PLANS['15_days']['price']}",
+            callback_data="plan_15_days"
+        )
+    )
+
+    markup.add(
+        InlineKeyboardButton(
             f"💎 30 Days - ₹{PLANS['30_days']['price']}",
             callback_data="plan_30_days"
+        )
+    )
+
+    markup.add(
+        InlineKeyboardButton(
+            f"💎 1 Year - ₹{PLANS['1_year']['price']}",
+            callback_data="plan_1_year"
         )
     )
 
@@ -57,6 +70,7 @@ def show_plans(chat_id):
         "📦 Select your subscription plan:",
         reply_markup=markup
     )
+    
 def show_payment(chat_id, plan):
     data = PLANS[plan]
 
