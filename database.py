@@ -114,20 +114,9 @@ def remove_premium(user_id):
     )
 
 
-def total_users():
-    return users_col.count_documents({})
-
-
 def total_active():
     return users_col.count_documents(
         {
             "premium": True
         }
-            )
-        {
-            "$set": {
-                "status": "rejected"
-            }
-        }
     )
-    
