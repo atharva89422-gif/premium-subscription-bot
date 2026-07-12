@@ -69,14 +69,23 @@ def approve_payment(user_id, days):
         }
     )
 
-
 def reject_payment(user_id):
     payments_col.update_one(
         {
             "user_id": user_id,
             "status": "pending"
-        },def get_active_users():
+        },
+        {
+            "$set": {
+                "status": "rejected"
+            }
+        }
+    )
+
+
+def get_active_users():
     return list(users_col.find({"premium": True}))
+
 
 
 def get_expired_users():
