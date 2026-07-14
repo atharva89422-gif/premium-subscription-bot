@@ -54,4 +54,7 @@ def callbacks(call):
 print("Bot Started...")
 
 threading.Thread(target=run_web, daemon=True).start()
-bot.infinity_polling(skip_pending=True)
+try:
+    bot.infinity_polling(skip_pending=True)
+except Exception as e:
+    print(e)
