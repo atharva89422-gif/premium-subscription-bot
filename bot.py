@@ -12,6 +12,7 @@ from handlers import (
 )
 
 bot = telebot.TeleBot(BOT_TOKEN)
+bot.delete_webhook(drop_pending_updates=True)
 app = Flask(__name__)
 
 @app.route("/")
