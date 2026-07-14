@@ -1,4 +1,7 @@
 import telebot
+from flask import Flask
+import threading
+import os
 
 from config import BOT_TOKEN
 from handlers import (
@@ -9,6 +12,14 @@ from handlers import (
 )
 
 bot = telebot.TeleBot(BOT_TOKEN)
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running!"
+
+def run_web():
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
 
 init_bot(bot)
 
@@ -41,4 +52,5 @@ def callbacks(call):
 
 print("Bot Started...")
 
+threading.Thread(target=run_web, daemon=True).start()
 bot.infinity_polling(skip_pending=True)
